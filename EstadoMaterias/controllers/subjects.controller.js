@@ -6,7 +6,6 @@ class materia {
     constructor() {
         this._MySheets = new Array(); // Array of Worksheets
     }
-    #loadSheets() {}
     static async _getSheets(idSheets = []) {
         let returnSheets = [];
         for(let idSheet of idSheets) {
@@ -20,34 +19,25 @@ class materia {
         }
         return returnSheets;
     }
-}
+};
 
 class iri extends materia {
     constructor() {
         super();
-        this.#loadSheets();
-    }
-    #loadSheets() {
-        let idSheets = (String(process.env.IRI)).split(' ');
-        this._MySheets = materia._getSheets(idSheets);
-        console.log(this._MySheets);
+        this._MySheets = materia._getSheets((String(process.env.IRI)).split(' '));
     }
     studentData(data) {
         return this._MySheets;
         //return `<p> ${data} <\p>`;
     }
-}
+};
 
 class lpii extends materia {
     constructor() {
         super();
-        this.#loadSheets();
+        this._MySheets = materia._getSheets((String(process.env.LPII)).split(' '));
     }
-    #loadSheets() {
-        let idSheets = (String(process.env.LPII)).split(' ');
-        this._MySheets = materia._getSheets(idSheets);
-    }
-}
+};
 
 module.exports = {
     iri,
