@@ -24,5 +24,4 @@ jobs:
     
     - name: Running Repository Test
       run: |
-        ls
-        npm start
+        cd EstadoMaterias && npm start
