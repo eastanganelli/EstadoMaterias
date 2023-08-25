@@ -14,14 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Install NPMs
+    - name: Install NPMs and running website
       uses: actions/checkout@v2
 
     - name: Install NPM Packages
       run: |
         cd EstadoMaterias
         npm install
-    
-    - name: Running Repository Test
-      run: |
-        cd EstadoMaterias && npm start
+        npm start
