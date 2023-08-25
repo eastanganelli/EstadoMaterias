@@ -14,13 +14,12 @@ $(`#sendData`).click(() => {
         else if (student_ == ``)
             appendAlert(`No se ingreso DNI/Mail`, `danger`);
         else
-        appendAlert(`No se seleccionó la materia`, `danger`);
+            appendAlert(`No se seleccionó la materia`, `danger`);
     } else {
-        $.get(`/mystatus`, { student: student_, subject: subject_ } ).done((data) => {
-            console.log(data);
-            // $(`#statusResponse`).html(data);
-        }).fail((data) => {
-            console.error(data.responseText);
+        $.get(`/mystatus`, { student: student_, subject: subject_ }).done((data) => {
+            $(`#statusResponse`).html(data);
+        }).fail((err) => {
+            appendAlert(err.responseText, `danger`);
         });
     }
 });

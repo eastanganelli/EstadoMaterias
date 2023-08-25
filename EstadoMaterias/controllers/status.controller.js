@@ -4,25 +4,31 @@ const StudentStatus = (req, res) => {
     const subjectFilter = Number(req.query.subject);
     const studentFilter = req.query.student;
 
-    if (studentFilter != ``) {
-        let subject_ = null;
+    let subject_ = null;
 
-        switch(subjectFilter) {
-            case 1: {
-                subject_ = new iri();
-                res.send(subject_.studentData(studentFilter));
-                break;
-            }
-            case 2: {
-                break;
-            }
-            default: {
-                res.status(403).send(`No se encuentra la materia`);
-                break;
-            }
+    switch(subjectFilter) {
+        case 1: {
+            subject_ = new iri();
+            subject_.studentData(studentFilter).then((data) => {
+                res.status(200).send(data);
+            }).catch((err) => {
+                res.status(403).send(err);
+            });
+            break;
         }
-    } else {
-        res.status(403).send(`Faltan datos`);
+        case 2: {
+            subject_ = new lpii();
+            subject_.studentData(studentFilter).then((data) => {
+                res.status(200).send(data);
+            }).catch((err) => {
+                res.status(403).send(err);
+            });
+            break;
+        }
+        default: {
+            res.status(403).send(`No se encuentra la materia`);
+            break;
+        }
     }
 };
 
