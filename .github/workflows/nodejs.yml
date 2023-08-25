@@ -1,0 +1,21 @@
+name: Estado Materias Website
+on:
+  push:
+    branches:
+      - master
+jobs:
+  running_system:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Install NPMs
+      uses: actions/checkout@v2
+
+    - name: Install NPM Packages
+      run: |
+        cd EstadoMaterias
+        npm install
+    
+    - name: Running Repository Test
+      run: |
+        npm start
