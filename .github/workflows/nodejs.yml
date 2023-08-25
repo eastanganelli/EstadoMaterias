@@ -1,4 +1,10 @@
 name: Estado Materias Website
+
+env:
+  GOOGLE_KEY: ${{secrets.GOOGLE_KEY}}
+  IRI: ${{vars.IRI}}
+  LPII: ${{vars.LPII}}
+
 on:
   push:
     branches:
@@ -18,4 +24,5 @@ jobs:
     
     - name: Running Repository Test
       run: |
+        ls
         npm start
