@@ -4,7 +4,8 @@ const dotenv   = require('dotenv').config();
 const express  = require('express');
 // const session  = require('express-session');
 
-const StatusRoute = require('./routes/status.route');
+const StatusRoute    = require('./routes/status.route');
+const AddMemberRoute = require('./routes/addmember.route');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.static('public'));
 
 // Routes
 app.use(StatusRoute);
+app.use(AddMemberRoute);
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
