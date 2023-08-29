@@ -1,4 +1,5 @@
-const Octokit = require('@octokit/rest');
+const { response } = require("express");
+const { Octokit, App } = require("octokit");
 
 const AddMember = (req, res) => {
     //const subjectFilter = Number(req.query.subject);
@@ -8,14 +9,15 @@ const AddMember = (req, res) => {
         auth: process.env.GITHUB_TOKEN
     });
       
-    octokit.request('GET /orgs/uf-iri/teams/alumnos-2023', {
-        org: 'ORG',
-        team_slug: 'TEAM_SLUG',
+    octokit.request('GET /orgs/', {
+        org: 'uf-iri',
+        team_slug: 'alumnos-2023',
         headers: {
           'X-GitHub-Api-Version': '2022-11-28'
         }
     }).then((data) => {
         console.log(data);
+        response.send(data);
     });
 
     /*switch(subjectFilter) {
