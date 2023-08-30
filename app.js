@@ -1,11 +1,15 @@
 'use strict'
-
+// https://regbrain.com/article/bootstrap-express
 const dotenv   = require('dotenv').config();
 const express  = require('express');
 // const session  = require('express-session');
 
-const StatusRoute    = require('./routes/status.route');
-const AddMemberRoute = require('./routes/addmember.route');
+const IndexRoute  = require('./routes/index.route');
+const StatusRoute = require('./routes/status.route');
+const {
+    AddMemberRoute,
+    AddMemberFrontRoute
+} = require('./routes/addmember.route');
 
 const app = express();
 
@@ -23,16 +27,10 @@ app.use(express.static('public'));
 //initializePassport(app);
 
 // Routes
+app.get(IndexRoute);
 app.use(StatusRoute);
 app.use(AddMemberRoute);
-
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
-});
-
-//app.get('/device', (req, res) => {
-//    res.sendFile(__dirname + '/public/device.html');
-//});
+app.use(AddMemberFrontRoute);
 
 app.listen(port, () => {
     if (DEVMODE) {
