@@ -28,16 +28,11 @@
     <div class="container">
         <div id="liveAlertPlaceholder"></div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="studentInput" placeholder="Ingrese DNI o Mail"
-                aria-label="Student Subject" aria-describedby="addon-wrapping">
-            <select class="form-select" id="studentSubject" aria-label="Materia: ">
-                <option selected>Materia: </option>
-                <option value="1">IRI</option>
-                <option value="2">LP II</option>
-            </select>
-            <button class="btn btn-outline-secondary" id="sendData" type="button">Ver Estado</button>
+            <input type="email" class="form-control" id="mailInput" placeholder="Ingrese Mail asociado con su cuenta de GitHub"
+                aria-label="Student Mail" aria-describedby="addon-wrapping">
+            <label class="form-control" id="studentSubject"></label>
+            <button class="btn btn-outline-secondary" id="sendData" type="button">Registrarse</button>
         </div>
-        <div id="statusResponse" class="d-flex flex-wrap justify-content-center"></div>
     </div>
     <footer class="d-flex flex-wrap justify-content-center my-4 border-top fixed-bottom">
         <div class="d-flex align-items-center">
@@ -53,10 +48,19 @@
             </li>
         </ul>
     </footer>
-    <script src="./assets/index.js"></script>
-    <script src="./assets/functions.js"></script>
+    <script src="./addmember.js"></script>
     <script>
-        init();
+        const alertPlaceholder = $(`#liveAlertPlaceholder`);
+
+        $(window).on('load', () => {
+            const actualyear = new Date().getUTCFullYear();
+            $(`#nowYear`).text(actualyear);
+
+            let sPageURL = window.location.href.search.substring(1);
+            console.log(sPageURL)
+            let sURLVariables = sPageURL.sPageURL(`#`);
+            console.log(sURLVariables);
+        });
     </script>
 </body>
 
