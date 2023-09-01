@@ -1,8 +1,3 @@
-const init = () => {
-    const actualyear = new Date().getUTCFullYear();
-    $(`#nowYear`).text(actualyear);
-};
-
 // Event handler for submit button click
 $(`#sendData`).click(() => {
     const student_ = $(`#studentInput`).val();
@@ -16,7 +11,7 @@ $(`#sendData`).click(() => {
         else
             appendAlert(`No se seleccionó la materia`, `danger`);
     } else {
-        $.get(`/mystatus`, { student: student_, subject: subject_ }).done((data) => {
+        $.get(`/studentstatus`, { student: student_, subject: subject_ }).done((data) => {
             $(`#statusResponse`).html(data);
         }).fail((err) => {
             appendAlert(err.responseText, `danger`);

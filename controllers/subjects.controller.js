@@ -1,4 +1,5 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
+const { Octokit } = require("octokit");
 
 const SheetsOfInterest = ["Estados", "Teoria", "Practica"];
 
@@ -9,7 +10,7 @@ class materia {
     static async _getSheets(idSheets = []) {
         let returnSheets = [];
         for (let idSheet of idSheets) {
-            const doc = new GoogleSpreadsheet(idSheet, { apiKey: process.env.GOOGLE_KEY });
+            const doc = new GoogleSpreadsheet(idSheet, { apiKey: process.env.GKEY });
             await doc.loadInfo();
             for (let hoja of SheetsOfInterest) {
                 let hojaTrabajo = doc.sheetsByTitle[hoja];
@@ -29,6 +30,26 @@ class materia {
         const status = aux >= 93.75 ? 'success' : aux >= 81.25 ? 'warning' : 'danger';
 
         return `<span class="badge text-bg-${status}">${name}: ${aux} %</span>`;
+    }
+    static _GitHubInviteOrg(org, year, studentmail) {
+        return new Promise((resolve, reject) => {
+            const octokit = new Octokit({
+                auth: process.env.GHKEY
+            });
+              
+            octokit.request('GET /orgs/{org}/teams/{team_slug}', {
+                org: `UF-${org}`,
+                team_slug: `Alumnos-${year}`
+            }).then((organization) => {
+                octokit.request('POST /orgs/{org}/invitations', {
+                    org: `UF-${org}`,
+                    email: studentmail,
+                    team_ids: [ organization['data']['id'] ]
+                }).then((invite) => {
+                    resolve(invite);
+                }).catch(err => { reject(err); });
+            }).catch(err => { reject(err); }); 
+        });
     }
 };
 
@@ -75,6 +96,9 @@ class iri extends materia {
 
         });
     }
+    InviteToOrg(Mail) {
+        return materia._GitHubInviteOrg('IRI', (new Date()).getFullYear(), Mail);
+    }
 };
 
 class lpii extends materia {
@@ -118,6 +142,9 @@ class lpii extends materia {
             });
 
         });
+    }
+    InviteToOrg(Mail) {
+        return materia._GitHubInviteOrg('LP2', (new Date()).getFullYear(), Mail);
     }
 };
 
