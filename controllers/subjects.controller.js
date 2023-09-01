@@ -10,7 +10,7 @@ class materia {
     static async _getSheets(idSheets = []) {
         let returnSheets = [];
         for (let idSheet of idSheets) {
-            const doc = new GoogleSpreadsheet(idSheet, { apiKey: process.env.GOOGLE_KEY });
+            const doc = new GoogleSpreadsheet(idSheet, { apiKey: process.env.GKEY });
             await doc.loadInfo();
             for (let hoja of SheetsOfInterest) {
                 let hojaTrabajo = doc.sheetsByTitle[hoja];
@@ -34,7 +34,7 @@ class materia {
     static _GitHubInviteOrg(org, year, studentmail) {
         return new Promise((resolve, reject) => {
             const octokit = new Octokit({
-                auth: process.env.GITHUB_TOKEN
+                auth: process.env.GHKEY
             });
               
             octokit.request('GET /orgs/{org}/teams/{team_slug}', {
@@ -144,7 +144,7 @@ class lpii extends materia {
         });
     }
     InviteToOrg(Mail) {
-        return materia._GitHubInviteOrg('LPII', (new Date()).getFullYear(), Mail);
+        return materia._GitHubInviteOrg('LP2', (new Date()).getFullYear(), Mail);
     }
 };
 

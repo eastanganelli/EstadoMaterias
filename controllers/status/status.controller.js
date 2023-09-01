@@ -1,8 +1,10 @@
-const { iri, lpii } = require('./subjects.controller');
+const { iri, lpii } = require('./../subjects.controller');
 
 const StudentStatus = (req, res) => {
     const subjectFilter = Number(req.query.subject);
     const studentFilter = req.query.student;
+
+    console.log('Hello Api');
 
     let subject_ = null;
 
@@ -32,4 +34,4 @@ const StudentStatus = (req, res) => {
     }
 };
 
-module.exports = { StudentStatus }
+module.exports = StudentStatus;

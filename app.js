@@ -1,8 +1,9 @@
-'use strict'
-// https://regbrain.com/article/bootstrap-express
 const dotenv   = require('dotenv').config();
-const express  = require('express');
-// const session  = require('express-session');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 const IndexRoute  = require('./routes/index.route');
 const StatusRoute = require('./routes/status.route');
@@ -13,27 +14,32 @@ const {
 
 const app = express();
 
-const port = process.env.PORT;
-const DEVMODE = (process.env.STATUS === 'dev');
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-/* app.use(session({
-    secret: dotenv.parsed.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false
-})) */
-app.use(express.static('public'));
-//initializePassport(app);
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
-app.get(IndexRoute);
+app.use(IndexRoute);
 app.use(StatusRoute);
 app.use(AddMemberRoute);
 app.use(AddMemberFrontRoute);
 
-app.listen(port, () => {
-    if (DEVMODE) {
-        console.log(`Application started in development mode on http://localhost:${port}`);
-    }
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+	next(createError(404));
 });
+
+// error handler
+app.use((err, req, res, next) => {
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
+	res.status(err.status || 500);
+	res.render('error');
+});
+
+module.exports = app;

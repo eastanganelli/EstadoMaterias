@@ -1,10 +1,9 @@
-'use strict'
-
 const express = require('express');
-let IndexRoute = express.Router();
+const IndexRoute = express.Router();
 
-IndexRoute.get('/', (res, req) => {
-    res.sendFile('../public/index.html');
+/* GET home page. */
+IndexRoute.get('/', function(req, res, next) {
+  res.render('pages/index', { title: 'Estado Materias', year: new Date().getUTCFullYear() });
 });
 
 module.exports = IndexRoute;

@@ -1,12 +1,8 @@
-'use strict'
-
 const express = require('express');
 let StatusRoute = express.Router();
 
-const {
-    StudentStatus
-} = require('../controllers/status.controller');
+const StudentStatus = require('../controllers/status/status.controller');
 
-StatusRoute.get('/mystatus', StudentStatus);
+StatusRoute.get('/studentstatus', StudentStatus);
 
 module.exports = StatusRoute;

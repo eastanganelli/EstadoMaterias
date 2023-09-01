@@ -8,7 +8,7 @@ const GitHubInvite = (req, res) => {
         case 1: {
             subject_ = new iri();
             subject_.InviteToOrg(mailFilter).then(response => {
-                res.status(200).send(response);
+                res.status(response.status).send(response);
             }).catch(err => {
                 res.status(403).send(err);
             });
@@ -17,9 +17,9 @@ const GitHubInvite = (req, res) => {
         case 2: {
             subject_ = new lpii();
             subject_.InviteToOrg(mailFilter).then(response => {
-                res.status(200).send(response);
+                res.status(response.status).send(response);
             }).catch(err => {
-                res.status(403).send(err);
+                res.status(err.status).send(err);
             });
             break;
         }
