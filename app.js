@@ -10,7 +10,7 @@ const StatusRoute = require('./routes/status.route');
 const {
     AddMemberRoute,
     AddMemberFrontRoute
-} = require('./routes/addmember.route');
+} = require('./routes/github.route');
 
 const app = express();
 
