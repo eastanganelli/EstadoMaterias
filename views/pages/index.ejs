@@ -3,13 +3,8 @@
 <div class="container">
   <div id="liveAlertPlaceholder"></div>
   <div class="input-group mb-3">
-    <input type="text" class="form-control" id="studentInput" placeholder="Ingrese DNI o Mail"
-        aria-label="Student Subject" aria-describedby="addon-wrapping">
-    <select class="form-select" id="studentSubject" aria-label="Materia: ">
-        <option selected>Materia: </option>
-        <option value="1">IRI</option>
-        <option value="2">LP II</option>
-    </select>
+    <input type="text" class="form-control" id="studentInput" placeholder="Ingrese DNI o Mail" aria-label="Student Subject" aria-describedby="addon-wrapping">
+    <%- subjectSelected %>
     <button class="btn btn-outline-secondary" id="sendData" type="button">Ver Estado</button>
 </div>
 <div id="statusResponse" class="d-flex flex-wrap justify-content-center"></div>
