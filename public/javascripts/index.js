@@ -12,8 +12,10 @@
             else
                 appendAlert(`No se seleccionó la materia`, `danger`);
         } else {
+            loadingCard();
             $.get(`/studentstatus`, { student: student_, subject: subject_ }).done((data) => {
                 $(`#statusResponse`).html(data);
+                loadingPlaceholder.remove();
             }).fail((err) => {
                 appendAlert(err.responseText, `danger`);
             });

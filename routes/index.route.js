@@ -10,8 +10,6 @@ IndexRoute.get('/', (req, res, next) => {
 		</option><option value="1" ${selSubject == 1 ? 'selected' : ''}>IRI</option>
 		<option value="2" ${selSubject == 2 ? 'selected' : ''}>LP II</option>
     </select>`;
-	
-console.log(selSubject,subjects);
 
 	res.render('pages/index', { title: 'Estado Materias',
 								year: new Date().getUTCFullYear(),

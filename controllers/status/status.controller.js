@@ -13,7 +13,7 @@ const StudentStatus = (req, res) => {
             subject_ = new iri();
             subject_.studentData(studentFilter).then((student) => {
                 res.status(200).send(`
-                    <div class="card">
+                    <div class="animate__animated animate__tada card">
                         <div class="card-header">
                             <h5 ${streaming ? 'aria-hidden="true"' : ''} class="card-title placeholder-glow"><span class="${streaming ? 'placeholder' : ''}"">${student['name']} ${student['lastname']}</span></h5>
                             <h6 ${streaming ? 'aria-hidden="true"' : ''} class="card-subtitle mb-2 text-body-secondary placeholder-glow"><span class="${streaming ? 'placeholder' : ''}">${student['dni']}</span></h6>
@@ -43,7 +43,7 @@ const StudentStatus = (req, res) => {
             subject_ = new lpii();
             subject_.studentData(studentFilter).then((student) => {
                 res.status(200).send(`
-                    <div class="card">
+                    <div class="animate__animated animate__tada card">
                         <div class="card-header">
                             <h5 ${streaming ? 'aria-hidden="true"' : ''} class="card-title placeholder-glow"><span class="${streaming ? 'placeholder' : ''}"">${student['name']} ${student['lastname']}</span></h5>
                             <h6 ${streaming ? 'aria-hidden="true"' : ''} class="card-subtitle mb-2 text-body-secondary placeholder-glow"><span class="${streaming ? 'placeholder' : ''}">${student['dni']}</span></h6>
