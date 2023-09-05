@@ -1,4 +1,4 @@
-const { iri, lpii } = require('./../subjects.controller');
+const { iri, lpii } = require('./../student/subjects.controller');
 const GitHubInvite = (req, res) => {
     const subjectFilter = Number(req.query.subject);
     const mailFilter    = req.query.mail;
