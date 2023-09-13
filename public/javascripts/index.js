@@ -17,7 +17,8 @@
                 $(`#statusResponse`).html(data);
                 loadingPlaceholder.remove();
             }).fail((err) => {
-                appendAlert(err.responseText, `danger`);
+                appendAlert(err['responseText'], `danger`);
+                loadingPlaceholder.remove();
             });
         }
     });

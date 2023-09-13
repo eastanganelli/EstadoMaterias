@@ -35,7 +35,7 @@ const StudentStatus = (req, res) => {
                     </div>
                 `);
             }).catch((err) => {
-                res.status(403).send(err);
+                res.status(err['statusResponse']).send(err['error']);
             });
             break;
         }
@@ -61,7 +61,7 @@ const StudentStatus = (req, res) => {
                     </div>
                 `);
             }).catch((err) => {
-                res.status(403).send(err);
+                res.status(err['statusResponse']).send(err['error']);
             });
             break;
         }

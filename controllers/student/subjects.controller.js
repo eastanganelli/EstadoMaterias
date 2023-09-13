@@ -40,8 +40,10 @@ class iri extends materia {
                     }
                 });
 
-                if (myStudent.status == null)
-                    reject(`No se encontró el estudiante`);
+                if (myStudent['status'] === null) {
+                    reject({ 'statusResponse': 403, 'error': 'No se encontró el estudiante' });
+                    return;
+                }
 
                 resolve({
                     'name': myStudent['status'].get('Nombre'),
@@ -103,8 +105,10 @@ class lpii extends materia {
                     }
                 });
 
-                if (myStudent == null)
-                    reject(`No se encontró el estudiante`);
+                if (myStudent['status'] === null) {
+                    reject({ 'statusResponse': 403, 'error': 'No se encontró el estudiante' });
+                    return;
+                }
 
                 resolve({
                     'name': myStudent['status'].get('Nombre'),
